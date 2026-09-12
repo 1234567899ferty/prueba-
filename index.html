@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Galería Pinterest</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#0b0f19;
+    color:white;
+}
+
+header{
+    text-align:center;
+    padding:30px 20px;
+    background:linear-gradient(135deg,#111827,#172554);
+}
+
+header h1{
+    color:#00ffd5;
+    margin-bottom:10px;
+}
+
+header p{
+    color:#aeb8c5;
+}
+
+.search{
+    max-width:700px;
+    margin:25px auto;
+    padding:0 20px;
+}
+
+.search input{
+    width:100%;
+    padding:15px 18px;
+    border-radius:12px;
+    border:1px solid #334155;
+    outline:none;
+    background:#111827;
+    color:white;
+    font-size:16px;
+}
+
+.gallery{
+    max-width:1200px;
+    margin:auto;
+    padding:10px 20px 40px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:#111827;
+    border:1px solid #263449;
+    border-radius:18px;
+    overflow:hidden;
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    border-color:#00ffd5;
+}
+
+.card iframe{
+    width:100%;
+    height:300px;
+    border:0;
+    background:white;
+}
+
+.info{
+    padding:15px;
+}
+
+.info h2{
+    color:#00ffd5;
+    margin-bottom:6px;
+}
+
+.info p{
+    color:#9ca3af;
+    font-size:14px;
+}
+
+.open{
+    display:block;
+    margin-top:12px;
+    padding:10px;
+    text-align:center;
+    background:#00ffd5;
+    color:#00110d;
+    text-decoration:none;
+    border-radius:9px;
+    font-weight:bold;
+}
+
+.open:hover{
+    background:#00a3ff;
+    color:white;
+}
+
+.no-results{
+    display:none;
+    text-align:center;
+    padding:40px;
+    color:#9ca3af;
+}
+
+/* MODO VISOR */
+.viewer{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:#05070b;
+    z-index:9999;
+}
+
+.viewer.active{
+    display:flex;
+    flex-direction:column;
+}
+
+.viewer-bar{
+    height:60px;
+    background:#111827;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px;
+}
+
+.viewer-title{
+    flex:1;
+    color:#00ffd5;
+    font-weight:bold;
+}
+
+.viewer button{
+    border:0;
+    padding:10px 14px;
+    border-radius:8px;
+    background:#1e293b;
+    color:white;
+    cursor:pointer;
+}
+
+.viewer button:hover{
+    background:#00ffd5;
+    color:#00110d;
+}
+
+#bigFrame{
+    flex:1;
+    width:100%;
+    border:0;
+    background:white;
+}
+
+@media(max-width:600px){
+
+    .gallery{
+        grid-template-columns:1fr;
+        padding:10px 15px;
+    }
+
+    .card iframe{
+        height:350px;
+    }
+
+    .viewer-title{
+        font-size:14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>📌 Pinterest Projects</h1>
+    <p>9 proyectos mediante Iframes</p>
+</header>
+
+<div class="search">
+    <input
+        id="search"
+        type="search"
+        placeholder="🔎 Buscar proyecto..."
+    >
+</div>
+
+<main class="gallery" id="gallery">
+
+    <!-- 1 -->
+    <article class="card" data-name="Proyecto 1">
+
+        <iframe
+            src="https://pin.it/4o2c3N8IW"
+            loading="lazy">
+        </iframe>
+
+        <div class="info">
+            <h2>Proyecto 1</h2>
+            <p>Referencia de Pinterest.</p>
+
+            <a
+                class="open"
+                href="https://pin.it/4o2c3N8IW"
+                target="_blank">
+                Abrir en Pinterest
+            </a>
+        </div>
+
+    </article>
+
+
+    <!-- 2 -->
+    <article class="card" data-name="Proyecto 2">
+
+        <iframe
+            src="https://pin.it/3SbZS4gRL"
+            loading="lazy">
+        </iframe>
+
+        <div class="info">
+            <h2>Proyecto 2</h2>
+            <p>Referencia de Pinterest.</p>
+
+            <a
+                class="open"
+                href="https://pin.it/3SbZS4gRL"
+                target="_blank">
+                Abrir en Pinterest
+            </a>
+        </div>
+
+    </article>
+
+
+    <!-- 3 -->
+    <article class="card" data-name="Proyecto 3">
+
+        <iframe
+            src="https://pin.it/2ayC9lRDY"
+            loading="lazy">
+        </iframe>
+
+        <div class="info">
+            <h2>Proyecto 3</h2>
+            <p>Referencia de Pinterest.</p>
+
+            <a
+                class="open"
+                href="https://pin.it/2ayC9lRDY"
+                target="_blank">
+                Abrir en Pinterest
+            </a>
+        </div>
+
+    </article>
+
+
+    <!-- 4 -->
+    <article class="card" data-name="Proyecto 4">
+
+        <iframe
+            src="https://pin.it/7609FwsO3"
+            loading="lazy">
+        </iframe>
+
+        <div class="info">
+            <h2>Proyecto 4</h2>
+            <p>Referencia de Pinterest.</p>
+
+            <a
+                class="open"
+                href="https://pin.it/7609FwsO3"
+                target="_blank">
+                Abrir en Pinterest
+            </a>
+        </div>
+
+    </article>
+
+
+    <!-- 5 -->
+    <article class="card" data-name="Proyecto 5">
+
+        <iframe
+            src="https://pin.it/31oWMpdE8"
+            loading="lazy">
+        </iframe>
+
+        <div class="info">
+            <h2>Proyecto 5</h2>
+            <p>Referencia de Pinterest.</p>
+
+            <a
+                class="open"
+                href="https://pin.it/31oWMpdE8"
+                target="_blank">
+                Abrir en Pinterest
+            </a>
+        </div>
+
+    </article>
+
+
+    <!-- 6 -->
+    <article class="card" data-name="Proyecto 6">
+
+        <iframe
+            src="https://pin.it/5rXBXMTBO"
+            loading="lazy">
+        </iframe>
+
+        <div class="info">
+            <h2>Proyecto 6</h2>
+            <p>Referencia de Pinterest.</p>
+
+            <a
+                class="open"
+                href="https://pin.it/5rXBXMTBO"
+                target="_blank">
+                Abrir en Pinterest
+            </a>
+        </div>
+
+    </article>
+
+
+    <!-- 7 -->
+    <article class="card" data-name="Proyecto 7">
+
+        <iframe
+            src="https://pin.it/1k0lZbAzH"
+            loading="lazy">
+        </iframe>
+
+        <div class="info">
+            <h2>Proyecto 7</h2>
+            <p>Referencia de Pinterest.</p>
+
+            <a
+                class="open"
+                href="https://pin.it/1k0lZbAzH"
+                target="_blank">
+                Abrir en Pinterest
+            </a>
+        </div>
+
+    </article>
+
+
+    <!-- 8 -->
+    <article class="card" data-name="Proyecto 8">
+
+        <iframe
+            src="https://pin.it/4dxIXF2gr"
+            loading="lazy">
+        </iframe>
+
+        <div class="info">
+            <h2>Proyecto 8</h2>
+            <p>Referencia de Pinterest.</p>
+
+            <a
+                class="open"
+                href="https://pin.it/4dxIXF2gr"
+                target="_blank">
+                Abrir en Pinterest
+            </a>
+        </div>
+
+    </article>
+
+
+    <!-- 9 -->
+    <article class="card" data-name="Proyecto 9">
+
+        <iframe
+            src="https://pin.it/6s6ScTWFb"
+            loading="lazy">
+        </iframe>
+
+        <div class="info">
+            <h2>Proyecto 9</h2>
+            <p>Referencia de Pinterest.</p>
+
+            <a
+                class="open"
+                href="https://pin.it/6s6ScTWFb"
+                target="_blank">
+                Abrir en Pinterest
+            </a>
+        </div>
+
+    </article>
+
+</main>
+
+<div class="no-results" id="noResults">
+    No se encontró ningún proyecto.
+</div>
+
+
+<!-- VISOR GRANDE -->
+
+<section class="viewer" id="viewer">
+
+    <div class="viewer-bar">
+
+        <button onclick="closeViewer()">
+            ✕ Cerrar
+        </button>
+
+        <div class="viewer-title" id="viewerTitle">
+            Proyecto
+        </div>
+
+        <button onclick="fullscreen()">
+            ⛶ Pantalla completa
+        </button>
+
+    </div>
+
+    <iframe id="bigFrame"></iframe>
+
+</section>
+
+
+<script>
+
+/* BUSCADOR */
+
+const search = document.getElementById("search");
+const cards = document.querySelectorAll(".card");
+const noResults = document.getElementById("noResults");
+
+search.addEventListener("input", function(){
+
+    const text = this.value.toLowerCase().trim();
+
+    let found = 0;
+
+    cards.forEach(card => {
+
+        const name =
+            card.dataset.name.toLowerCase();
+
+        if(name.includes(text)){
+
+            card.style.display = "";
+            found++;
+
+        }else{
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+    noResults.style.display =
+        found === 0 ? "block" : "none";
+
+});
+
+
+/* ABRIR VISOR */
+
+const viewer =
+    document.getElementById("viewer");
+
+const bigFrame =
+    document.getElementById("bigFrame");
+
+const viewerTitle =
+    document.getElementById("viewerTitle");
+
+
+document.querySelectorAll(".card iframe")
+.forEach((iframe,index)=>{
+
+    iframe.addEventListener("dblclick",()=>{
+
+        openViewer(
+            iframe.src,
+            "Proyecto " + (index + 1)
+        );
+
+    });
+
+});
+
+
+function openViewer(url,name){
+
+    bigFrame.src = url;
+
+    viewerTitle.textContent = name;
+
+    viewer.classList.add("active");
+
+    document.body.style.overflow = "hidden";
+
+}
+
+
+/* CERRAR */
+
+function closeViewer(){
+
+    viewer.classList.remove("active");
+
+    bigFrame.src = "";
+
+    document.body.style.overflow = "";
+
+}
+
+
+/* PANTALLA COMPLETA */
+
+function fullscreen(){
+
+    if(bigFrame.requestFullscreen){
+
+        bigFrame.requestFullscreen();
+
+    }
+
+}
+
+
+/* ESC */
+
+document.addEventListener("keydown",function(e){
+
+    if(e.key === "Escape"){
+
+        closeViewer();
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
